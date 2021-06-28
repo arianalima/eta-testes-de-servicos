@@ -23,9 +23,9 @@ public class PostLoginTests extends TestBase{
         Response response = login(SPECIFICATION, validUser);
         response.
                 then().
-                statusCode(200).
-                body("message", equalTo(Constants.SUCCESS_LOGIN_MESSAGE)).
-                body("authorization", startsWith("Bearer "));
+                    statusCode(200).
+                    body("message", equalTo(Constants.SUCCESS_LOGIN_MESSAGE)).
+                    body("authorization", startsWith("Bearer "));
     }
 
     @Test

@@ -35,10 +35,10 @@ public class PostUserTests extends TestBase{
         Response response = register(SPECIFICATION, invalidUser);
         response.
                  then().
-                 assertThat().
-                 statusCode(400).
-                 body("message", equalTo(Constants.DUPLICATED_EMAIL_MESSAGE)).
-                 body("_id", nullValue());
+                     assertThat().
+                     statusCode(400).
+                     body("message", equalTo(Constants.DUPLICATED_EMAIL_MESSAGE)).
+                     body("_id", nullValue());
     }
 
     @AfterClass

@@ -26,9 +26,9 @@ public class PutUserTests extends TestBase{
         Response response = updateInfo(SPECIFICATION, validUser);
         response.
                 then().
-                statusCode(200).
-                body("message", equalTo(Constants.SUCCESS_UPDATE_MESSAGE)).
-                body("_id", nullValue());
+                    statusCode(200).
+                    body("message", equalTo(Constants.SUCCESS_UPDATE_MESSAGE)).
+                    body("_id", nullValue());
     }
 
     @Test
@@ -36,9 +36,9 @@ public class PutUserTests extends TestBase{
         Response response = updateInfo(SPECIFICATION, invalidUser);
         response.
                 then().
-                statusCode(201).
-                body("message", equalTo(Constants.SUCCESS_REGISTER_MESSAGE)).
-                body("_id", notNullValue());
+                    statusCode(201).
+                    body("message", equalTo(Constants.SUCCESS_REGISTER_MESSAGE)).
+                    body("_id", notNullValue());
     }
 
     @Test
@@ -47,9 +47,9 @@ public class PutUserTests extends TestBase{
         Response response = updateInfo(SPECIFICATION, invalidUser);
         response.
                 then().
-                statusCode(400).
-                body("message", equalTo(Constants.DUPLICATED_EMAIL_MESSAGE)).
-                body("_id", nullValue());
+                    statusCode(400).
+                    body("message", equalTo(Constants.DUPLICATED_EMAIL_MESSAGE)).
+                    body("_id", nullValue());
     }
 
     @AfterClass

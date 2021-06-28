@@ -35,9 +35,9 @@ public class DeleteUserTests extends TestBase{
         Response response = delete(SPECIFICATION, invalidUser);
         response.
                 then().
-                assertThat().
-                statusCode(200).
-                body("message", equalTo(Constants.NO_DELETION_MESSAGE));
+                    assertThat().
+                    statusCode(200).
+                    body("message", equalTo(Constants.NO_DELETION_MESSAGE));
     }
 
     @AfterClass

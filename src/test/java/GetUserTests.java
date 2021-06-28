@@ -1,3 +1,4 @@
+import io.restassured.response.Response;
 import models.User;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -6,8 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static requests.UserEndpoint.delete;
-import static requests.UserEndpoint.register;
+import static requests.UserEndpoint.*;
 
 
 public class GetUserTests extends TestBase{
@@ -36,26 +36,22 @@ public class GetUserTests extends TestBase{
 
     @Test
     public void getAll_allUsers_status200(){
-        given().
-                spec(SPECIFICATION).
-        when().
-                get("usuarios").
-        then().
-                assertThat().
-                statusCode(200).
-                body("quantidade", equalTo(3));
+        Response response = getAll(SPECIFICATION);
+        response.
+            then().
+                    assertThat().
+                    statusCode(200).
+                    body("quantidade", equalTo(3));
     }
 
     @Test(dataProvider = "usersData")
     public void getUser_nameFulanoDaSilvaPasswordTest_status200(String query, int resultAmount){
-        given().
-                spec(SPECIFICATION).
-        when().
-                get("usuarios"+query).
-        then().
-                assertThat().
-                statusCode(200).
-                body("quantidade", equalTo(resultAmount));
+        Response response = getAll(SPECIFICATION, query);
+        response.
+            then().
+                    assertThat().
+                    statusCode(200).
+                    body("quantidade", equalTo(resultAmount));
     }
 
     @AfterClass

@@ -7,15 +7,33 @@ import models.User;
 import static io.restassured.RestAssured.given;
 
 public class UserEndpoint {
+    public static Response getAll(RequestSpecification specification){
+        Response response =
+                given().
+                        spec(specification).
+                when().
+                        get("usuarios");
+        return response;
+    }
+
+    public static Response getAll(RequestSpecification specification, String query){
+        Response response =
+                given().
+                        spec(specification).
+                when().
+                        get("usuarios"+query);
+        return response;
+    }
+
     public static Response register(RequestSpecification specification, User user){
         String userStringJsonModel = user.generateUserJsonModel().toJSONString();
         Response response =
                 given().
                         spec(specification).
                         header("Content-Type", "application/json").
-                        and().
+                    and().
                         body(userStringJsonModel).
-                        when().
+                when().
                         post("usuarios");
         if (response.statusCode() == 201){
             user.setId(response.path("_id").toString());
@@ -28,9 +46,9 @@ public class UserEndpoint {
                 given().
                         spec(specification).
                         header("Content-Type", "application/json").
-                        and().
+                    and().
                         body(user.getCredentials()).
-                        when().
+                when().
                         post("login");
         try{
             user.setAuthToken(response.path("authorization").toString());
@@ -45,7 +63,7 @@ public class UserEndpoint {
                 given().
                         spec(specification).
                         header("Content-Type", "application/json").
-                        when().
+                when().
                         delete("usuarios/" + user.getId());
         return response;
     }
@@ -56,9 +74,9 @@ public class UserEndpoint {
                 given().
                         spec(specification).
                         header("Content-Type", "application/json").
-                        and().
+                    and().
                         body(userStringJsonModel).
-                        when().
+                when().
                         put("usuarios/" + user.getId());
         if (response.statusCode() == 201){
             user.setId(response.path("_id").toString());
