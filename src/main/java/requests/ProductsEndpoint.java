@@ -24,15 +24,4 @@ public class ProductsEndpoint {
         }
         return response;
     }
-
-//    public static Response delete(RequestSpecification specification, Product product, User user) {
-//        Response response =
-//                given().
-//                        spec(specification).
-//                        header("Content-Type", "application/json").
-//                        header("Authorization", user.getAuthToken()).
-//                when().
-//                        delete("produtos/" + product.getId());
-//        return response;
-//    }
 }
