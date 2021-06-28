@@ -1,10 +1,7 @@
 package models;
 
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 
-import static io.restassured.RestAssured.given;
 
 public class Product {
     private String name;
@@ -40,6 +37,10 @@ public class Product {
         return description;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -56,23 +57,7 @@ public class Product {
         this.id = id;
     }
 
-    public Response register(RequestSpecification specification){
-        String productStringJsonModel = generateProductJsonModel().toJSONString();
-        Response response =
-                given().
-                        spec(specification).
-                        header("Content-Type", "application/json").
-                    and().
-                        body(productStringJsonModel).
-                when().
-                        post("produtos");
-        if (response.statusCode() == 201){
-            setId(response.path("_id").toString());
-        }
-        return response;
-    }
-
-    private JSONObject generateProductJsonModel() {
+    public JSONObject generateProductJsonModel() {
         JSONObject productJsonModel = new JSONObject();
         productJsonModel.put("nome", this.name);
         productJsonModel.put("preco", this.price);

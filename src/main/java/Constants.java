@@ -7,4 +7,7 @@ public class Constants {
     public static final String SUCCESS_REGISTER_MESSAGE = "Cadastro realizado com sucesso";
     public static final String DUPLICATED_EMAIL_MESSAGE = "Este email já está sendo usado";
     public static final String SUCCESS_UPDATE_MESSAGE = "Registro alterado com sucesso";
+    public static final String INVALID_TOKEN_MESSAGE = "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais";
+    public static final String DUPLICATED_PRODUCT_MESSAGE = "Já existe produto com esse nome";
+    public static final String UNAUTHORIZED_ROUTE_MESSAGE = "Rota exclusiva para administradores";
 }

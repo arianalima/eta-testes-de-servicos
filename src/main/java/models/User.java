@@ -16,6 +16,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.authToken = "";
     }
 
     public String getName() {
@@ -32,6 +33,10 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public String getAuthToken() {
+        return authToken;
     }
 
     public boolean isAdmin(){
@@ -77,4 +82,5 @@ public class User {
         userJsonModel.put("administrador", String.valueOf(this.isAdmin));
         return userJsonModel;
     }
+
 }
