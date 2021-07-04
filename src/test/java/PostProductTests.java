@@ -4,13 +4,13 @@ import models.User;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import requests.ProductsEndpoint;
 import requests.UserEndpoint;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static requests.ProductsEndpoint.register;
-import static requests.UserEndpoint.delete;
 
 public class PostProductTests extends TestBase{
     private static Product validProduct1;
@@ -76,7 +76,9 @@ public class PostProductTests extends TestBase{
 
     @AfterClass
     public void deleteTestData(){
-        delete(SPECIFICATION, validUser);
-        delete(SPECIFICATION, invalidUser2);
+        ProductsEndpoint.delete(SPECIFICATION, validProduct1, validUser);
+        ProductsEndpoint.delete(SPECIFICATION, validProduct2, validUser);
+        UserEndpoint.delete(SPECIFICATION, validUser);
+        UserEndpoint.delete(SPECIFICATION, invalidUser2);
     }
 }
